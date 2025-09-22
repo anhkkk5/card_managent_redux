@@ -1,0 +1,41 @@
+// Container chứa danh sách sản phẩm
+.product {
+  display: flex;
+  flex-wrap: wrap;
+
+  // Style cho từng item sản phẩm
+  &__item {
+    width: 45%;
+    margin-right: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 30px;
+  }
+
+  // Style cho hình ảnh sản phẩm
+  &__image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  // Style cho giá mới (sau khi giảm)
+  &__price-new {
+    font-size: 20px;
+    font-weight: 700;
+    color: green;
+  }
+
+  // Style cho giá cũ (trước khi giảm)
+  &__price-old {
+    font-size: 16px;
+    font-weight: 700;
+    color: red;
+    text-decoration: line-through;
+  }
+
+  // Style cho phần trăm giảm giá
+  &__percent {
+    font-weight: 700;
+    color: orange;
+  }
+}
