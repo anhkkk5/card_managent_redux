@@ -35,8 +35,8 @@ function Cart() {
     dispatch(deleteAll());
   };
 
-  // Log ra state giỏ hàng để kiểm tra
-  console.log(cart);
+  // TODO: Remove debug console.log in production
+  // console.log(cart);
 
   const total = cart.reduce((sum, item) => {
     const priceNew = (

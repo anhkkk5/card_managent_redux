@@ -27,22 +27,26 @@ const ExampleComponent = () => {
     try {
       const userId = "user123"; // Thay bằng ID user thực tế
       await cartAPI.addToCart(userId, productId, 1);
-      alert("Đã thêm vào giỏ hàng!");
+      // TODO: Replace with proper notification system
+      console.log("Đã thêm vào giỏ hàng!");
     } catch (err) {
-      alert("Không thể thêm vào giỏ hàng");
+      // TODO: Replace with proper error notification
+      console.error("Không thể thêm vào giỏ hàng");
       console.error(err);
     }
   };
 
-  // Ví dụ: Đăng nhập
+  // Ví dụ: Đăng nhập (hàm mẫu để demo API)
+  // eslint-disable-next-line no-unused-vars
   const handleLogin = async (credentials) => {
     try {
       const response = await userAPI.login(credentials);
       localStorage.setItem("token", response.token);
-      alert("Đăng nhập thành công!");
+      // TODO: Replace with proper notification system
+      console.log("Đăng nhập thành công!");
     } catch (err) {
-      alert("Đăng nhập thất bại");
-      console.error(err);
+      // TODO: Replace with proper error notification
+      console.error("Đăng nhập thất bại:", err);
     }
   };
 

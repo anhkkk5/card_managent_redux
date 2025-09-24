@@ -8,18 +8,35 @@ import ProductItem from "./ProductItem";
 function Product() {
   // State lưu trữ danh sách sản phẩm
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // useEffect để fetch dữ liệu sản phẩm khi component mount
   useEffect(() => {
     // Hàm async để gọi API lấy danh sách sản phẩm
     const fetchApi = async () => {
-      const result = await getProductList("products");
-      setProducts(result);
+      try {
+        setLoading(true);
+        setError(null);
+        const result = await getProductList("products");
+        setProducts(result);
+      } catch (err) {
+        setError("Không thể tải danh sách sản phẩm");
+        console.error("Error fetching products:", err);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchApi();
   }, []);
+  if (loading) {
+    return <div>Đang tải sản phẩm...</div>;
+  }
 
-  console.log(products);
+  if (error) {
+    return <div>Lỗi: {error}</div>;
+  }
+
   return (
     <div>
       <div className="product">
