@@ -8,7 +8,32 @@ import { createStore } from "redux";
 import allReducers from "./reducers/index";
 import { Provider } from "react-redux";
 
-const store = createStore(allReducers);
+// Load cart state from localStorage (if available)
+const loadCartState = () => {
+  try {
+    const serialized = localStorage.getItem("cart");
+    if (!serialized) return undefined;
+    const cart = JSON.parse(serialized);
+    return { cartReducer: Array.isArray(cart) ? cart : [] };
+  } catch (e) {
+    return undefined;
+  }
+};
+
+// Create store with preloaded state
+const preloadedState = loadCartState();
+const store = createStore(allReducers, preloadedState);
+
+// Persist cart state to localStorage on every change
+store.subscribe(() => {
+  try {
+    const state = store.getState();
+    const serialized = JSON.stringify(state.cartReducer);
+    localStorage.setItem("cart", serialized);
+  } catch (e) {
+    // ignore write errors
+  }
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
