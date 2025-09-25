@@ -11,8 +11,7 @@ src/axios/
 ├── index.js           # Export tất cả services
 └── services/
     ├── productAPI.js  # API services cho sản phẩm
-    ├── cartAPI.js     # API services cho giỏ hàng
-    └── userAPI.js     # API services cho user
+    └── cartAPI.js     # API services cho giỏ hàng
 ```
 
 ## Cách sử dụng
@@ -20,19 +19,15 @@ src/axios/
 ### 1. Import và sử dụng API services
 
 ```javascript
-import { productAPI, cartAPI, userAPI } from "../axios";
+import { productAPI, cartAPI } from "../axios";
 
 // Sử dụng product API
 const products = await productAPI.getAllProducts();
 const product = await productAPI.getProductById(1);
 
 // Sử dụng cart API
-await cartAPI.addToCart(userId, productId, quantity);
-const cart = await cartAPI.getCart(userId);
-
-// Sử dụng user API
-await userAPI.login({ email, password });
-const user = await userAPI.getCurrentUser();
+await cartAPI.addToCart(productId, quantity);
+const cart = await cartAPI.getCart();
 ```
 
 ### 2. Sử dụng API methods trực tiếp
@@ -76,37 +71,21 @@ REACT_APP_API_URL=http://localhost:3002
 
 ### Interceptors
 
-- **Request Interceptor**: Tự động thêm token authentication vào headers
+- **Request Interceptor**: Log requests để debug
 - **Response Interceptor**: Xử lý response và error tự động
 
 ### Error Handling
 
 API sẽ tự động xử lý các lỗi phổ biến:
 
-- 401: Unauthorized - redirect đến trang login
 - 403: Forbidden - access denied
 - 500+: Server error
-
-## Migration từ fetch
-
-Thay thế các hàm fetch cũ:
-
-```javascript
-// Cũ (fetch)
-import { get, post } from "../utils/request";
-const products = await get("products");
-
-// Mới (axios)
-import { productAPI } from "../axios";
-const products = await productAPI.getAllProducts();
-```
 
 ## Lợi ích
 
 1. **Tái sử dụng**: Cấu hình tập trung, dễ bảo trì
 2. **Error handling**: Xử lý lỗi tự động và nhất quán
-3. **Authentication**: Tự động thêm token vào requests
-4. **Logging**: Log requests và responses để debug
-5. **TypeScript support**: Dễ dàng thêm type definitions
-6. **Request/Response transformation**: Tự động parse JSON
-7. **Timeout handling**: Cấu hình timeout cho requests
+3. **Logging**: Log requests và responses để debug
+4. **TypeScript support**: Dễ dàng thêm type definitions
+5. **Request/Response transformation**: Tự động parse JSON
+6. **Timeout handling**: Cấu hình timeout cho requests

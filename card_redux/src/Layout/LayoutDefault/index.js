@@ -6,10 +6,11 @@ import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Layout, Row, Col, Menu, Typography, Space, Divider } from "antd";
 import {
-  ShoppingCartOutlined,
   HomeOutlined,
   ShopOutlined,
+  ShoppingCartOutlined,
   UserOutlined,
+  FileTextOutlined,
 } from "@ant-design/icons";
 
 const { Header, Content, Footer } = Layout;
@@ -29,9 +30,19 @@ function LayoutDefault() {
       label: <Link to="/">Sản phẩm</Link>,
     },
     {
+      key: "cart",
+      icon: <ShoppingCartOutlined />,
+      label: <Link to="/cart">Giỏ hàng</Link>,
+    },
+    {
+      key: "posts",
+      icon: <FileTextOutlined />,
+      label: <Link to="/posts">Bài viết</Link>,
+    },
+    {
       key: "about",
       icon: <UserOutlined />,
-      label: "Giới thiệu",
+      label: <Link to="/about">Giới thiệu</Link>,
     },
   ];
 

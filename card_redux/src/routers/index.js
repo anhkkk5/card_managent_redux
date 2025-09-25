@@ -3,6 +3,7 @@ import React from "react";
 import LayoutDefault from "../Layout/LayoutDefault";
 import Home from "../pages/Home";
 import Cart from "../pages/Cart";
+import Posts from "../pages/Posts";
 
 // Cấu hình các routes cho ứng dụng
 export const routes = [
@@ -18,6 +19,10 @@ export const routes = [
       {
         path: "cart", // Route giỏ hàng
         element: <Cart />, // Component trang giỏ hàng
+      },
+      {
+        path: "posts", // Route quản lý bài viết
+        element: <Posts />, // Component trang quản lý bài viết
       },
     ],
   },
